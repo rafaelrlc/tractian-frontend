@@ -1,2 +1,3 @@
-export type SelectedHeaderButtonType = "Tobias" | "Jaguar" | "Apex";
-export type SelectedDashboardButtonType = "vibration" | "energy" | null;
+export type CompanyList = { id: string; name: string }[];
+export type SelectedDashboardButtonType = "alert" | "energy" | null;
+export type Company = {id : string; name : string}

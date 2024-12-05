@@ -1,25 +1,34 @@
 import CompanyButton from './company-button';
-
+import { selectedCompany } from '../../store/store';
+import LogoImg from "../../assets/file.png";
 import { useAtom } from 'jotai';
-import { selectedHeaderButtonAtom } from '../../store/store';
-import { SelectedHeaderButtonType } from '../../store/types';
-
-import { headerButtons } from "../../lib/constants";
-import logo from "../../assets/file.png";
+import { useQuery } from '@tanstack/react-query';
+import { Company } from '../../store/types';
 
 const Navbar = () => {
-  const [selectedHeaderButton, setSelectedHeaderButton] = useAtom(selectedHeaderButtonAtom);
+  const [selected, setSelected] = useAtom(selectedCompany);
+
+  const { data: companies = [], error, isLoading } = useQuery<Company[]>({
+    queryKey: ['companies'],
+    queryFn: async () => {
+      const response = await fetch('https://fake-api.tractian.com/companies');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    },
+  });
 
   return (
     <nav className="flex justify-between items-center sticky bg-[#17192D] p-2.5 h-[60px]">
-      <img src={logo} alt="tractian logo" className="h-10" />
-      <div className="flex gap-5">
-        {headerButtons.map((company, index) => (
+      <img src={LogoImg} alt="tractian logo" className="h-10" />
+      <div className="flex gap-5 pr-5">
+        {companies.map((company, index) => (
           <CompanyButton
-            key={index}
-            text={company.text}
-            onClick={() => setSelectedHeaderButton(company.code as SelectedHeaderButtonType)}
-            isSelected={selectedHeaderButton === company.code}
+            key={company.id || index}
+            text={company.name}
+            onClick={() => setSelected(company)}
+            isSelected={selected?.id === company.id}
           />
         ))}
       </div>

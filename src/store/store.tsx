@@ -1,7 +1,8 @@
 import { atom } from 'jotai';
-import { SelectedHeaderButtonType, SelectedDashboardButtonType } from './types';
+import { Company, CompanyList, SelectedDashboardButtonType } from './types';
 
-export const selectedHeaderButtonAtom = atom<SelectedHeaderButtonType>("Tobias");
+export const selectedCompany = atom<Company>({id: '662fd0ee639069143a8fc387', name: 'Jaguar'});
+export const companyList = atom<CompanyList>([])
 export const selectedDashboardButtonAtom = atom<SelectedDashboardButtonType>(null);
 
 export const toggleDashboardButtonAtom = atom(

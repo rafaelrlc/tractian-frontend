@@ -1,6 +1,7 @@
 import React from 'react';
 import { SquareMenu } from 'lucide-react';
 
+
 interface CompanyButtonProps {
   text: string;
   onClick: () => void;
