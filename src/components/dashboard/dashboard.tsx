@@ -3,10 +3,12 @@ import Tree from "./tree"
 
 const DashBoard = () => {
   return (
-    <div className='bg-white h-[calc(100vh-60px)] m-2 border-2 border-gray-300 rounded-lg'>
+    <div className='bg-white h-[calc(100vh-65px)] m-[7px] border-[1px] border-gray-300 rounded-lg'>
       <DashboardHeader />
-      <div>
-        <Tree />
+      <div className='flex'>
+        <div className='w-[40%]'>
+          <Tree />
+        </div>
       </div>
     </div>
   )
