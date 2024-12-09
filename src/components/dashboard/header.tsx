@@ -1,7 +1,7 @@
 import HeaderButton from "./sensor-button"
 
 import { useAtom } from 'jotai';
-import { selectedHeaderButtonAtom, toggleDashboardButtonAtom } from "../../store/store";
+import { selectedCompany, toggleDashboardButtonAtom } from "../../store/store";
 import { SelectedDashboardButtonType } from "../../store/types";
 
 import { CircleAlert, Zap } from 'lucide-react';
@@ -10,7 +10,7 @@ import { DashboardHeaderButton } from "./types";
 
 const DashboardHeader = () => {
 
-  const [selectedHeaderButton] = useAtom(selectedHeaderButtonAtom);
+  const [company] = useAtom(selectedCompany);
   const [selectedDashboardButton, toggleDashboardButton] = useAtom(toggleDashboardButtonAtom);
 
   const dashboardHeaderButtons: DashboardHeaderButton[] = [
@@ -21,7 +21,7 @@ const DashboardHeader = () => {
     },
     {
       text: 'Crítico',
-      code: 'vibration',
+      code: 'alert',
       icon: <CircleAlert size={14} />
     }
   ]
@@ -32,7 +32,7 @@ const DashboardHeader = () => {
         <div className="flex gap-3 items-center">
           <h1 className="text-black text-[1.35rem]">Ativos</h1>
           <p className="text-sm text-gray-400 flex items-center">
-          / {selectedHeaderButton ? `${selectedHeaderButton} Unit` : ''}
+          / {company ? `${company.name} Unit` : ''}
           </p>
         </div>
         <div className="flex gap-3">
