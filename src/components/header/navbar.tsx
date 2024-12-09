@@ -8,7 +8,7 @@ import { Company } from '../../store/types';
 const Navbar = () => {
   const [selected, setSelected] = useAtom(selectedCompany);
 
-  const { data: companies = [], error, isLoading } = useQuery<Company[]>({
+  const { data: companies = [] } = useQuery<Company[]>({
     queryKey: ['companies'],
     queryFn: async () => {
       const response = await fetch('https://fake-api.tractian.com/companies');
