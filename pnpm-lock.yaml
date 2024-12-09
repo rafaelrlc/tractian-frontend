@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@tanstack/react-query':
+    specifier: ^5.62.2
+    version: 5.62.2(react@18.3.1)
   axios:
     specifier: ^1.7.8
     version: 1.7.8
@@ -22,7 +25,7 @@ dependencies:
     version: 18.3.1
   react-dom:
     specifier: ^18.3.1
-    version: 18.3.1(react@18.3.1)
+    version: 18.3.1(react@18.3.1)                                                                                                                                       
 
 devDependencies:
   '@eslint/js':
@@ -780,6 +783,19 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@tanstack/query-core@5.62.2:
+    resolution: {integrity: sha512-LcwVcC5qpsDpHcqlXUUL5o9SaOBwhNkGeV+B06s0GBoyBr8FqXPuXT29XzYXR36lchhnerp6XO+CWc84/vh7Zg==}
+    dev: false
+
+  /@tanstack/react-query@5.62.2(react@18.3.1):
+    resolution: {integrity: sha512-fkTpKKfwTJtVPKVR+ag7YqFgG/7TRVVPzduPAUF9zRCiiA8Wu305u+KJl8rCrh98Qce77vzIakvtUyzWLtaPGA==}
+    peerDependencies:
+      react: ^18 || ^19
+    dependencies:
+      '@tanstack/query-core': 5.62.2
+      react: 18.3.1
+    dev: false
 
   /@tinyhttp/accepts@2.2.3:
     resolution: {integrity: sha512-9pQN6pJAJOU3McmdJWTcyq7LLFW8Lj5q+DadyKcvp+sxMkEpktKX5sbfJgJuOvjk6+1xWl7pe0YL1US1vaO/1w==}
