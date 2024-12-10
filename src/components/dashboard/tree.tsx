@@ -125,7 +125,7 @@ const Tree = (
             <span className="text-sm">{node.name}</span>
             {node.type === 'component' && (
               <>
-                <span className={`h-2 w-2 ${node.status == "alert" ? "bg-red-500" : "bg-green-500" } text-sm ml-3 rounded-full`}></span>
+                <span className={`h-2 w-2 ${node.status == "alert" ? "bg-red-500" : "bg-green-500" } text-sm mx-3 rounded-full`}></span>
                 {node.sensorType === 'energy' && (
                   <Zap size={14} className="text-yellow-500" />
                 )}
