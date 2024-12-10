@@ -8,7 +8,7 @@ import { selectedCompany, selectedDashboardButtonAtom, searchItemAtom, treeData 
 import { hasEnergyChild, hasAlertChild, buildTree } from '../../lib/tree-functions'
 import { iconMap } from '../../lib/constants'
 
-import { ChevronRight, ChevronDown, Dot, Zap, Search } from 'lucide-react'
+import { ChevronRight, ChevronDown, Zap, Search } from 'lucide-react'
 
 import { SelectedDashboardButtonType } from '../../store/types'
 import { TreeNode, Asset, Location } from './types'
@@ -25,7 +25,7 @@ const Tree = (
   const [selectedDashboardButton] = useAtom<SelectedDashboardButtonType>(selectedDashboardButtonAtom)
   const [searchItem, setSearchItem] = useAtom(searchItemAtom)
   const [treeDataState, setTreeDataState] = useAtom(treeData)
-  
+
   const { fetchData } = useFetchData(company)
 
   const fetchLocations = (): Promise<Location[]> => fetchData('locations', 'Failed to fetch locations');
@@ -125,8 +125,7 @@ const Tree = (
             <span className="text-sm">{node.name}</span>
             {node.type === 'component' && (
               <>
-                <Dot size={35} className={`${node.status === 'alert' ? 'text-red-500' : 'text-green-500'
-                  } p-0`} />
+                <span className={`h-2 w-2 ${node.status == "alert" ? "bg-red-500" : "bg-green-500" } text-sm ml-3 rounded-full`}></span>
                 {node.sensorType === 'energy' && (
                   <Zap size={14} className="text-yellow-500" />
                 )}
