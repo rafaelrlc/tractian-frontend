@@ -8,7 +8,6 @@ const useFetchData = (company: Company | undefined) => {
       const response = await api.get(`/${company.id}/${endpoint}`);
       return response.data;
     } catch {
-      console.error(errorMessage);
       throw new Error(errorMessage);
     }
   };
