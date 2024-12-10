@@ -8,7 +8,7 @@ import { CircleAlert, Zap } from 'lucide-react';
 
 import { DashboardHeaderButton } from "./types";
 
-const DashboardHeader = () => {
+const Header = () => {
 
   const [company] = useAtom(selectedCompany);
   const [selectedDashboardButton, toggleDashboardButton] = useAtom(toggleDashboardButtonAtom);
@@ -53,4 +53,4 @@ const DashboardHeader = () => {
   )
 }
 
-export default DashboardHeader
+export default Header
