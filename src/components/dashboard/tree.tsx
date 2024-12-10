@@ -4,22 +4,28 @@ import { useAtom } from 'jotai'
 import { useQuery } from '@tanstack/react-query'
 import useFetchData from '../../hooks/useFetchData'
 import { selectedCompany, selectedDashboardButtonAtom, searchItemAtom, treeData } from '../../store/store'
-import { hasEnergyChild, hasAlertChild, buildTree } from '../../lib/tree-functions'
 
-import LocationImg from "../../assets/location.png"
-import ComponentImg from "../../assets/component.png"
-import AssetImg from "../../assets/asset.png"
+import { hasEnergyChild, hasAlertChild, buildTree } from '../../lib/tree-functions'
+import { iconMap } from '../../lib/constants'
+
 import { ChevronRight, ChevronDown, Dot, Zap, Search } from 'lucide-react'
 
 import { SelectedDashboardButtonType } from '../../store/types'
 import { TreeNode, Asset, Location } from './types'
 
-const Tree = () => {
+interface TreeProps {
+  setSelectedComponent: (component: TreeNode) => void
+  selectedComponent: TreeNode | null
+}
+
+const Tree = (
+  { setSelectedComponent, selectedComponent }: TreeProps
+) => {
   const [company] = useAtom(selectedCompany)
   const [selectedDashboardButton] = useAtom<SelectedDashboardButtonType>(selectedDashboardButtonAtom)
   const [searchItem, setSearchItem] = useAtom(searchItemAtom)
   const [treeDataState, setTreeDataState] = useAtom(treeData)
-
+  
   const { fetchData } = useFetchData(company)
 
   const fetchLocations = (): Promise<Location[]> => fetchData('locations', 'Failed to fetch locations');
@@ -65,7 +71,6 @@ const Tree = () => {
 
 
   const renderTreeNode = (node: TreeNode, level: number = 0) => {
-
     if (selectedDashboardButton === 'energy') {
       if (node.type === 'component' && node.sensorType !== 'energy') {
         return null
@@ -90,16 +95,25 @@ const Tree = () => {
         return null
       }
     }
+
+    function handleNodeClick(node: TreeNode) {
+      if (hasChildren && toggleTreeNode(node.id)) {
+        return;
+      }
+      if (node.type === 'component') {
+        setSelectedComponent(node);
+      }
+    }
+
+    const iconSrc = iconMap[node.type] || iconMap['component'];
     const hasChildren = node.children && node.children.length > 0
-    const icon = node.type === 'location' ? <img src={LocationImg} className='h-4 w-4' /> :
-      node.type === 'asset' ? <img src={AssetImg} className='h-4 w-4' /> :
-        <img src={ComponentImg} className='h-4 w-4' />
+    const icon = <img src={iconSrc} className='h-4 w-4' />;
 
     return (
       <div key={node.id} className="ml-4">
         <div
-          className="flex items-center hover:bg-gray-100 rounded cursor-pointer"
-          onClick={() => hasChildren && toggleTreeNode(node.id)}
+          className={`flex items-center ${selectedComponent?.id !== node.id && "hover:bg-gray-100"} rounded cursor-pointer px-1 ${selectedComponent?.id === node.id && "bg-[#2188FF] text-white "}`}
+          onClick={() => handleNodeClick(node)}
         >
           {hasChildren && (
             node.isExpanded ?
