@@ -8,16 +8,16 @@ const DashBoard = () => {
   const [selectedComponent, setSelectedComponent] = useState<TreeNode | null>(null)
 
   return (
-    <div className='bg-white h-[calc(100vh-75px)] m-[7px] border-[1px] border-gray-300 rounded-lg'>
+    <div className="mx-3 h-[calc(100vh-55px)]">
       <Header />
-      <div className='flex h-[calc(70vh)]'>
-        <div className='w-[40%]'>
+      <div className='flex gap-4'>
+        <div className='w-[40%] border'>
           <Tree setSelectedComponent={setSelectedComponent} selectedComponent={selectedComponent} />
         </div>
-        <div className='w-[60%]'>
+        <div className='w-[60%] border'>
           <div className='bg-gray-100'>
             {selectedComponent && (
-              <ComponentContent component={selectedComponent} /> // Render selected component details
+              <ComponentContent component={selectedComponent} />
             )}
           </div>
         </div>
