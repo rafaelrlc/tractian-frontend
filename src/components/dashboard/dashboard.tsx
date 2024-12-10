@@ -8,7 +8,7 @@ const DashBoard = () => {
   const [selectedComponent, setSelectedComponent] = useState<TreeNode | null>(null)
 
   return (
-    <div className="mx-3 h-[calc(100vh-55px)]">
+    <div className="mx-3 h-[calc(100vh-60px)]">
       <Header />
       <div className='flex gap-4'>
         <div className='w-[40%] border'>

@@ -27,7 +27,7 @@ const Header = () => {
   ]
 
   return (
-    <div className="m-3">
+    <div>
       <div className="flex justify-between items-center my-4 mx-2">
         <div className="flex gap-3 items-center">
           <h1 className="text-black text-[1.35rem]">Ativos</h1>
